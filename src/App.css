@@ -93,3 +93,40 @@ div form input{
 .post_btn{
     margin-top: 5px;
 }
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+div.post-page{
+    object-position: center center;
+}
+div.post_page h1{
+    text-align: center;   
+    margin: 10px 0 5px;
+}
+div.post_page time{
+    text-align: center;
+    display: block;
+    font-size: .7rem;
+    color: #aaa;
+}
+div.post_page div.author{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: .7rem;
+    font-weight: bold;
+}
+div.edit-row{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+div.post_page button{
+    width: 15%;
+    background-color: #555;
+    border: 0;
+    color: #fff;
+    border-radius: 5px;
+}

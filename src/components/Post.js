@@ -1,17 +1,24 @@
+import { Link } from 'react-router-dom'
 import img from '../img.jpg'
+import {format} from 'date-fns'
 
 export default function Post(props) {
-  const {title,summary}=props
+  const {id,title,summary,createdAt,author_name}=props
     return(
     <div className='post'>
         <div className="image">
-          <img src={img} alt="img"/>
+          <Link to={`/post/${id}`}>
+            <img src={img} alt="img"/>
+          </Link>
         </div>
         <div className="texts">
-          <h2>{title}</h2>
+          <Link to={`/post/${id}`}>
+            <h2>{title}</h2>
+          </Link>
           <p className="info">
-            <a className="author">Guru</a>
-            <time>2023-10-16 08.53</time>
+            <a  className="author">{author_name}</a>
+            <time>{format(new Date(createdAt),'MMM d, yyyy HH:mm')}</time>
+            
           </p>
           <p className="summary">{summary}</p>
         </div>

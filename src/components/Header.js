@@ -19,7 +19,7 @@ export default function Header() {
   <header>
       <Link to="/" className='logo'>BlogVista</Link>
       <nav>
-        {user ? <>
+        {user && user.name ? <>
           <Link to='/createpost'>Create Post</Link>
           <button onClick={logout}>Logout</button>
         </>
@@ -33,3 +33,5 @@ export default function Header() {
     </header>
   );
 };
+
+//2:42:03

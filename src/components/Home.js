@@ -13,7 +13,7 @@ export default function Home() {
     return(
         <>
             {posts.length>0 && posts.map((post)=>{
-                return <Post key={post._id} title={post.title} summary={post.summary}/>
+                return <Post key={post._id} id={post._id} title={post.title} summary={post.summary} author_name={post.author.name} createdAt={post.createdAt}/>
             })}
         </>
     )

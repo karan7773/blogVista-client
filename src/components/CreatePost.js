@@ -13,6 +13,7 @@ export default function CreatePost() {
         summary:"",
         content:"",
         // files:""
+        
     })
 
     const modules = {
