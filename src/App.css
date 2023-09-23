@@ -124,7 +124,8 @@ div.edit-row{
     margin-top: 20px;
 }
 div.post_page button{
-    width: 15%;
+    margin-right: 5px;
+    width: 20%;
     background-color: #555;
     border: 0;
     color: #fff;

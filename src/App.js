@@ -9,6 +9,7 @@ import {Toaster} from 'react-hot-toast'
 import { UserContextProvider } from './components/UserContext';
 import CreatePost from './components/CreatePost';
 import PostPage from './components/PostPage';
+import EditPost from './components/EditPost';
 
 
 axios.defaults.baseURL='http://localhost:8989';
@@ -24,6 +25,7 @@ function App() {
           <Route path="/register" element={<Register/>}/>
           <Route path="/createpost" element={<CreatePost />}/>
           <Route path="/post/:id" element={<PostPage />}/>
+          <Route path="/editpost/:id" element={<EditPost/>}/>
         </Route>
       </Routes>
     </UserContextProvider>

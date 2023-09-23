@@ -33,5 +33,3 @@ export default function Header() {
     </header>
   );
 };
-
-//2:42:03

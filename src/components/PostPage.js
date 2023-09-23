@@ -1,15 +1,17 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { format } from 'date-fns';
+import { Link } from 'react-router-dom';
 
 import { UserContext } from "./UserContext";
+import toast from 'react-hot-toast';
 
 export default function PostPage() {
+  const navigate=useNavigate();
   const [postinfo, setPostinfo] = useState({});
   const { id } = useParams();
   const {user}=useContext(UserContext);
-//   console.log(user);
 
   useEffect(() => {
     axios
@@ -23,13 +25,20 @@ export default function PostPage() {
       });
   }, []);
 
+  function handdleDelete(){
+    axios.delete(`/post/${id}`).then((res)=>{
+      console.log(res);
+      navigate('/');
+      toast.success("deleted succesfully")
+    })
+  }
+
   const formattedDate = postinfo.createdAt
     ? format(new Date(postinfo.createdAt), 'MMM d, yyyy HH:mm')
     : '';
   const author_name=postinfo.author ? postinfo.author.name : '';
   const user_id=user?user.id:'';
   const post_author_id=postinfo.author?postinfo.author._id:"";
-//   console.log(user , post_author_id);
 
   return (
     <div className='post_page'>
@@ -38,7 +47,8 @@ export default function PostPage() {
       <div className='author'>by {author_name}</div>
       {user_id===post_author_id ? (
         <div className='edit-row'>
-            <button className='edit-btn'>Edit this Post</button>
+            <button className='edit-btn'><Link to={`/editpost/${postinfo._id}`}>Edit this Post</Link></button>
+            <button className='edit-btn' onClick={handdleDelete}>Delete this Post</button>
         </div>
       ):''}
       <div dangerouslySetInnerHTML={{ __html: postinfo.content }} />
