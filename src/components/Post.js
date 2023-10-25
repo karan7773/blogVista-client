@@ -3,12 +3,14 @@ import img from '../img.jpg'
 import {format} from 'date-fns'
 
 export default function Post(props) {
-  const {id,title,summary,createdAt,author_name}=props
+  const {id,title,summary,createdAt,author_name,image}=props
     return(
     <div className='post'>
         <div className="image">
           <Link to={`/post/${id}`}>
-            <img src={img} alt="img"/>
+            {
+              image ? <img src={image} alt="img"/> : <img src={img} alt="img"/>
+            }
           </Link>
         </div>
         <div className="texts">

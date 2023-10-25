@@ -12,7 +12,7 @@ export default function CreatePost() {
         title:"",
         summary:"",
         content:"",
-        // files:""
+        files:""
         
     })
 
@@ -32,12 +32,25 @@ export default function CreatePost() {
         'list', 'bullet', 'indent',
         'link', 'image'
     ]
+    const converttoBase64=(e)=>{
+        console.log(e);
+        let fileReader=new FileReader();
+        fileReader.readAsDataURL(e.target.files[0]);
+        fileReader.onload=()=>{
+            console.log(fileReader.result);
+            setpost({...post,files:fileReader.result})
+        }
+        fileReader.onerror=error=>{
+            console.log("error ",error);
+        }
+        
+    }
 
     async function handdlePost(e){
         e.preventDefault();
-        const {title,summary,content}=post;
-        // const files=file[0];
-        const data=await axios.post('/newpost',{title,summary,content})
+        const {title,summary,content,files}=post;
+        // console.log(files);
+        const data=await axios.post('/newpost',{title,summary,content,files})
         if(data.error){
             console.log(data.error);
         }else{
@@ -62,10 +75,10 @@ export default function CreatePost() {
                 value={post.summary}
                 onChange={(e)=>setpost({...post,summary:e.target.value})}
             />
-            {/* <input 
+            <input 
                 type='file' 
-                onChange={(e)=>setpost({...post,file:e.target.files})}
-            /> */}
+                onChange={(e)=>{converttoBase64(e)}}
+            />
             <ReactQuill 
                 value={post.content}
                 modules={modules}

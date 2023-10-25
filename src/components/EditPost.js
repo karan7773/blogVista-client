@@ -13,6 +13,7 @@ export default function EditPost() {
         title: '',
         summary: '',
         content: '',
+        files:''
     })
     const modules = {
         toolbar: [
@@ -24,10 +25,24 @@ export default function EditPost() {
         ],
     }
 
+    const converttoBase64=(e)=>{
+        console.log(e);
+        let fileReader=new FileReader();
+        fileReader.readAsDataURL(e.target.files[0]);
+        fileReader.onload=()=>{
+            console.log(fileReader.result);
+            setpost({...post,files:fileReader.result})
+        }
+        fileReader.onerror=error=>{
+            console.log("error ",error);
+        }
+        
+    }
+
     useEffect(()=>{
         axios.get(`/post/${id}`)
         .then((info) => {
-        //   console.log(info.data);
+          console.log(info.data);
           setpost(info.data);
         })
         .catch((error) => {
@@ -44,8 +59,8 @@ export default function EditPost() {
 
     async function handdlePostUpdate(e){
         e.preventDefault();
-        const {title,summary,content}=post;
-        axios.patch(`/update/${id}`,{title,summary,content}).then((res)=>{
+        const {title,summary,content,files}=post;
+        axios.patch(`/update/${id}`,{title,summary,content,files}).then((res)=>{
             // console.log(res);
             setpost({});
             toast.success("update successful")
@@ -69,10 +84,10 @@ export default function EditPost() {
                 value={post.summary}
                 onChange={(e)=>setpost({...post,summary:e.target.value})}
             />
-            {/* <input 
+            <input 
                 type='file' 
-                onChange={(e)=>setpost({...post,file:e.target.files})}
-            /> */}
+                onChange={(e)=>converttoBase64(e)}
+            />
             <ReactQuill 
                 value={post.content}
                 modules={modules}
