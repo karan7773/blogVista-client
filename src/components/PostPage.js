@@ -41,7 +41,7 @@ export default function PostPage() {
   const post_author_id=postinfo.author?postinfo.author._id:"";
 
   return (
-    <div className='post_page'>
+    <div className='post_page' style={{"padding": "10px","max-width": "700px","margin": "0 auto"}}>
       <h1>{postinfo.title}</h1>
       <time>{formattedDate}</time>
       <div className='author'>by {author_name}</div>

@@ -36,7 +36,7 @@ export default function Register() {
     }
 
     return(
-        <div>
+        <div style={{"padding": "10px","max-width": "700px","margin": "0 auto"}}>
             <h1>Register</h1>
             <form className="register">
                 <input 

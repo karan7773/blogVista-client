@@ -17,16 +17,16 @@ export default function Header() {
 
   return(
   <header>
-      <Link to="/" className='logo'>BlogVista</Link>
+      <Link to="/" className='logo'><h3>BlogVista</h3></Link>
       <nav>
         {user && user.name ? <>
-          <Link to='/createpost'>Create Post</Link>
-          <button onClick={logout}>Logout</button>
+          <Link to='/createpost'><h3>Create Post</h3></Link>
+          <button onClick={logout}><h3>Logout</h3></button>
         </>
         : 
         <>
-          <Link to='/login'>Login</Link>
-          <Link to='/register'>Register</Link>
+          <Link to='/login'><h3>Login</h3></Link>
+          <Link to='/register'><h3>Register</h3></Link>
         </>
         }
       </nav>

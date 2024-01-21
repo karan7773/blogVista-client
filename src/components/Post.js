@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom'
-import img from '../img.jpg'
+import img from '../image/dummy.jpg'
 import {format} from 'date-fns'
 
 export default function Post(props) {
   const {id,title,summary,createdAt,author_name,image}=props
     return(
     <div className='post'>
+      <div className='post-container'>
         <div className="image">
           <Link to={`/post/${id}`}>
             {
@@ -24,6 +25,7 @@ export default function Post(props) {
           </p>
           <p className="summary">{summary}</p>
         </div>
+      </div>
     </div>
     )
 };

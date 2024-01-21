@@ -71,30 +71,33 @@ export default function EditPost() {
     }
 
     return(
-        <form>
-            <input 
-                type='title' 
-                placeholder='Title'
-                value={post.title}
-                onChange={(e)=>setpost({...post,title:e.target.value})}
-            />
-            <input 
-                type='summary' 
-                placeholder='Summary'
-                value={post.summary}
-                onChange={(e)=>setpost({...post,summary:e.target.value})}
-            />
-            <input 
-                type='file' 
-                onChange={(e)=>converttoBase64(e)}
-            />
-            <ReactQuill 
-                value={post.content}
-                modules={modules}
-                formats={formats}
-                onChange={(newVal)=>setpost({...post,content:newVal})}
-            />
-            <button className='post_btn' onClick={handdlePostUpdate}>Update Post</button>
-        </form>
+        <div style={{"padding": "10px","max-width": "700px","margin": "0 auto"}}>
+            <h1>Edit Post</h1>
+            <form>
+                <input 
+                    type='title' 
+                    placeholder='Title'
+                    value={post.title}
+                    onChange={(e)=>setpost({...post,title:e.target.value})}
+                />
+                <input 
+                    type='summary' 
+                    placeholder='Summary'
+                    value={post.summary}
+                    onChange={(e)=>setpost({...post,summary:e.target.value})}
+                />
+                <input 
+                    type='file' 
+                    onChange={(e)=>converttoBase64(e)}
+                />
+                <ReactQuill 
+                    value={post.content}
+                    modules={modules}
+                    formats={formats}
+                    onChange={(newVal)=>setpost({...post,content:newVal})}
+                />
+                <button className='post_btn' onClick={handdlePostUpdate}>Update Post</button>
+            </form>
+        </div>
     )
 };
